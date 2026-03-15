@@ -6,7 +6,7 @@
 <h3>Phone: {{ $mycontacts['phone'] }}</h3>
 <h1>ФОТО РЕАЛЬНОЕ!!!</h1>
 
-<img src="{{ asset('sf_arcana.gif') }}" 
+<img src="{{ asset('additions/sf_arcana.gif') }}" 
      alt="Photo not found" 
      width="900" 
      height="600" 
