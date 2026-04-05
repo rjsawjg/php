@@ -12,4 +12,8 @@ class MainController extends Controller
         $articles = json_decode(File::get(public_path('additions/articles.json')));
         return view('articles', ['articles' => $articles]);
     }
+
+    public function get_image($id){
+        return view('galery/galery_item', ['id' => $id]);
+    }
 }

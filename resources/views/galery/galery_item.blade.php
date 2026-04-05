@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+@extends('layout')
+@section('content')
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -80,4 +82,5 @@ img {
 
 
 </body>
+@endsection
 </html>

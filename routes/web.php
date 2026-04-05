@@ -2,14 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AuthController;
 
 // Route::get('/', function () {
 //     return view('layout');
 // });
 
-// Route::get('/about', function () {
-//     return view('about');
-// });
+//Auth
+Route::post('/register', [Authcontroller::class, 'register']);
+Route::get('/signout', [AuthController::class, 'signout']);
+
+//Main
+Route::get('/about', function () {
+    return view('about');
+});
 
 Route::get('/', [MainController::class, 'index']);
 
@@ -21,10 +27,8 @@ Route::get('/contacts', function () {
     return view('contact', ['mycontacts' => $contact_data]);
 });
 
-Route::get('/galery', function () {
-    return view('galery/galery');
-});
+// Route::get('/galery/{id}', function ($id) {
+//     return view('galery/galery_item', ['id' => $id]);
+// });
 
-Route::get('/galery/{id}', function ($id) {
-    return view('galery/galery_item', ['id' => $id]);
-});
+Route::get('/galery/{id}', [MainController::class, 'get_image']);
