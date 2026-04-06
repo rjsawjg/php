@@ -3,10 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ArticleController;
 
 // Route::get('/', function () {
 //     return view('layout');
 // });
+
+//Article
+Route::resource('/article', ArticleController::class);
 
 //Auth
 Route::post('/register', [Authcontroller::class, 'register']);
