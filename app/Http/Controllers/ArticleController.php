@@ -21,7 +21,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('article/create');
     }
 
     /**
@@ -29,7 +29,17 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required|min:10',
+            'text'=>'required|max:300'
+        ]);
+        $article = new Article;
+        $article->title = $request->title;
+        $article->text = $request->text;
+        $article->date_public = $request->date;
+        $article->user_id = 1;
+        $article->save();
+        return redirect()->route('article.show', ['article'=>$article->id]);
     }
 
     /**
@@ -37,7 +47,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('article/show', ['article'=>$article])
+        return view('article/show', ['article'=>$article]);
     }
 
     /**
@@ -45,7 +55,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('article/edit', ['article'=>$article]);
     }
 
     /**
@@ -53,7 +63,16 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'title'=>'required|min:10',
+            'text'=>'required|max:300'
+        ]);
+        $article->title = $request->title;
+        $article->text = $request->text;
+        $article->date_public = $request->date;
+        $article->user_id = 1;
+        $article->save();
+        return redirect()->route('article.show', ['article'=>$article->id]);
     }
 
     /**
@@ -61,6 +80,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->route('article.index');
     }
 }
