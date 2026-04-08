@@ -11,6 +11,18 @@ class Article extends Model
     use HasFactory;
 
     public function user(){
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    protected $fillable = [
+        'title',
+        'text',
+        'date_public',
+        'user_id'
+    ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'articles_id'); //
     }
 }

@@ -10,6 +10,16 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
    <style>
+        .auto-resize {
+          overflow: hidden;
+          resize: vertical;
+          min-height: 38px;  /* для input */
+        }
+
+        textarea.auto-resize {
+            min-height: 100px;  /* для textarea */
+        }
+        
         header {
             height: 9vh;           /* 18% от высоты экрана */
             background-color: #f8f9fa;
@@ -113,8 +123,31 @@
     </nav>
   </header>
   <main style="padding-top: 1%;   padding-left: 5%; padding-right: 5%;">
+    {{-- Вывод уведомлений --}}
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     @yield('content')
   </main>
   <footer>Липатов Ростислав Сергеевич, 241-132</footer>
+    <script>
+    document.addEventListener('input', function(e) {
+    if (e.target.classList.contains('auto-resize')) {
+          e.target.style.height = 'auto';
+          e.target.style.height = (e.target.scrollHeight) + 'px';
+        }
+    });
+  </script>
 </body>
 </html>

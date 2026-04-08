@@ -4,10 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 
 // Route::get('/', function () {
 //     return view('layout');
 // });
+//Comment
+Route::delete('/article/{id}/comment/delete', [CommentController::class, 'destroy']);
+Route::post('/article/{id}/comment/create', [CommentController::class, 'create']);
+Route::put('/article/{id}/comment/edit', [CommentController::class, 'update']);
 
 //Article
 Route::resource('/article', ArticleController::class);
