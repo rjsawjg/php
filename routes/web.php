@@ -14,12 +14,16 @@ Route::delete('/article/{id}/comment/delete', [CommentController::class, 'destro
 Route::post('/article/{id}/comment/create', [CommentController::class, 'create']);
 Route::put('/article/{id}/comment/edit', [CommentController::class, 'update']);
 
+
 //Article
 Route::resource('/article', ArticleController::class);
 
 //Auth
 Route::post('/register', [Authcontroller::class, 'register']);
 Route::get('/signout', [AuthController::class, 'signout']);
+Route::get('/signin', [AuthController::class, 'signin'])->name('login');
+Route::post('auth', [AuthController::class, 'auth']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 //Main
 Route::get('/about', function () {

@@ -116,7 +116,13 @@
           </li>
         </ul>
         <div class="d-flex">
-          <a href='/signout' class="btn btn-outline-success">SignOut</a>
+          @guest
+            <a href="/signin" class="btn btn-outline-success mr-2">Sign In</a>
+            <a href="/signout" class="btn btn-outline-success">Sign Out</a>
+          @endguest
+          @auth
+            <a href="/logout" class="btn btn-outline-success">Log Out</a>
+          @endauth
         </div>
       </div>
     </div>
