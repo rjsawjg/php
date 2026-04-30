@@ -10,7 +10,7 @@
       {{$article->user->name ?? App\Models\User::findOrfail($article->user_id)->name}}
     </h6>
     <p class="card-text">{{$article->text}}</p>
-    
+    @can('update', $article)
     <div class="d-flex justify-content-end gap-3">
       <a href="/article/{{$article->id}}/edit" class="btn btn-warning">Edit article</a>
      
@@ -20,6 +20,7 @@
         <button class="btn btn-danger" type="submit">Delete article</button>
       </form>
     </div>
+    @endcan
   </div>
 </div>
 
@@ -43,6 +44,7 @@
         <p class="card-text mt-2">{{$comment->text}}</p>
         
         {{-- Кнопки для управления комментарием --}}
+        @can('comment', $comment)
         <div class="d-flex justify-content-end gap-2">
         {{-- КНОПКА EDIT (теперь открывает модальное окно) --}}
         <button class="btn btn-sm btn-outline-warning" onclick="openEditModal({{$comment->id}}, '{{ addslashes($comment->title) }}', '{{ addslashes($comment->text) }}')">
@@ -56,6 +58,7 @@
             <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
         </form>
     </div>
+    @endcan
       </div>
     </div>
     @endforeach

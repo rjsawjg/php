@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -24,6 +25,7 @@ class CommentController extends Controller
 
     public function destroy($id){
         $comment = Comment::findOrFail($id);
+        Gate::authorize('comment', $comment);
         $comment->delete();
         return redirect()->back()->with('success', 'Комментарий удален');
     }
@@ -35,7 +37,7 @@ class CommentController extends Controller
         ]);
 
         $comment = Comment::findOrFail($id);
-
+        Gate::authorize('comment', $comment);
         $comment->update([
         'title' => $request->title,
         'text' => $request->text,

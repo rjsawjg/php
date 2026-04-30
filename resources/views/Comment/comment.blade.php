@@ -42,6 +42,7 @@
         <p class="card-text mt-2">{{$comment->text}}</p>
         
         {{-- Кнопки для управления комментарием --}}
+        @can('comment', $comment)
         <div class="d-flex justify-content-end gap-2">
           <a href="/comment/{{$comment->id}}/edit" class="btn btn-sm btn-outline-warning">Edit</a>
           <form method="post" action="/comment/{{$comment->id}}">
@@ -50,6 +51,7 @@
             <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
           </form>
         </div>
+        @endcan
       </div>
     </div>
     @endforeach
