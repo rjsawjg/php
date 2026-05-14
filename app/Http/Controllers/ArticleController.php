@@ -6,6 +6,8 @@ use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNewArticle;
 
 class ArticleController extends Controller
 {
@@ -42,7 +44,7 @@ class ArticleController extends Controller
         $article->text = $request->text;
         $article->date_public = $request->date;
         $article->user_id = 1;
-        $article->save();
+        if ($article->save()) Mail::to("rostislav.lipatov.01@mail.ru")->send(new MailNewArticle($article));
         return redirect()->route('article.show', ['article'=>$article->id]);
     }
 
@@ -78,7 +80,7 @@ class ArticleController extends Controller
         $article->text = $request->text;
         $article->date_public = $request->date;
         $article->user_id = 1;
-        $article->save();
+        if ($article->save());
         return redirect()->route('article.show', ['article'=>$article->id]);
     }
 
