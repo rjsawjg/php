@@ -77,6 +77,7 @@
             /* Footer автоматически будет внизу */
         }
     </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
   <header>
@@ -155,5 +156,6 @@
         }
     });
   </script>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 </body>
 </html>
